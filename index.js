@@ -58,7 +58,15 @@ async function generateNotes(pluginConfig, context) {
   );
   const previousTag = lastRelease.gitTag || lastRelease.gitHead;
   const currentTag = nextRelease.gitTag || nextRelease.gitHead;
-  const {host: hostConfig, linkCompare, linkReferences, commit: commitConfig, issue: issueConfig} = pluginConfig;
+  const {
+    host: hostConfig,
+    linkCompare,
+    linkReferences,
+    commit: commitConfig,
+    issue: issueConfig,
+    owner: ownerConfig,
+    repository: repositoryConfig,
+  } = pluginConfig;
   const changelogContext = merge(
     {
       version: nextRelease.version,
@@ -72,7 +80,15 @@ async function generateNotes(pluginConfig, context) {
       commit,
       packageData: ((await readPkgUp({normalize: false, cwd})) || {}).packageJson,
     },
-    {host: hostConfig, linkCompare, linkReferences, commit: commitConfig, issue: issueConfig}
+    {
+      host: hostConfig,
+      linkCompare,
+      linkReferences,
+      commit: commitConfig,
+      issue: issueConfig,
+      owner: ownerConfig,
+      repository: repositoryConfig,
+    }
   );
 
   debug('version: %o', changelogContext.version);

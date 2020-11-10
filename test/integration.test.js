@@ -512,6 +512,52 @@ test('Accept a "host" option', async t => {
   );
 });
 
+test('Accept a "owner" option', async t => {
+  const commits = [
+    {hash: '111', message: 'fix(scope1): First fix'},
+    {hash: '222', message: 'feat(scope2): Second feature'},
+  ];
+  const changelog = await generateNotes(
+    {owner: 'newOwner'},
+    {cwd, options: {repositoryUrl: 'https://github.com/owner/repo'}, lastRelease, nextRelease, commits}
+  );
+
+  t.regex(changelog, new RegExp(escape('(https://github.com/newOwner/repo/compare/v1.0.0...v2.0.0)')));
+  t.regex(changelog, /### Bug Fixes/);
+  t.regex(
+    changelog,
+    new RegExp(escape('* **scope1:** First fix ([111](https://github.com/newOwner/repo/commit/111))'))
+  );
+  t.regex(changelog, /### Features/);
+  t.regex(
+    changelog,
+    new RegExp(escape('* **scope2:** Second feature ([222](https://github.com/newOwner/repo/commit/222))'))
+  );
+});
+
+test('Accept a "repository" option', async t => {
+  const commits = [
+    {hash: '111', message: 'fix(scope1): First fix'},
+    {hash: '222', message: 'feat(scope2): Second feature'},
+  ];
+  const changelog = await generateNotes(
+    {repository: 'newRepo'},
+    {cwd, options: {repositoryUrl: 'https://github.com/owner/repo'}, lastRelease, nextRelease, commits}
+  );
+
+  t.regex(changelog, new RegExp(escape('(https://github.com/owner/newRepo/compare/v1.0.0...v2.0.0)')));
+  t.regex(changelog, /### Bug Fixes/);
+  t.regex(
+    changelog,
+    new RegExp(escape('* **scope1:** First fix ([111](https://github.com/owner/newRepo/commit/111))'))
+  );
+  t.regex(changelog, /### Features/);
+  t.regex(
+    changelog,
+    new RegExp(escape('* **scope2:** Second feature ([222](https://github.com/owner/newRepo/commit/222))'))
+  );
+});
+
 test('Accept a "commit" option', async t => {
   const commits = [
     {hash: '111', message: 'fix(scope1): First fix'},

@@ -1,5 +1,5 @@
 {
-  "name": "@semantic-release/release-notes-generator",
+  "name": "@allotools/release-notes-generator",
   "description": "semantic-release plugin to generate changelog content with conventional-changelog",
   "version": "0.0.0-development",
   "author": "Pierre Vanduynslager (https://twitter.com/@pvdlg_)",
@@ -77,14 +77,16 @@
   },
   "prettier": {
     "printWidth": 120,
-    "trailingComma": "es5"
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "bracketSpacing": false
   },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/semantic-release/release-notes-generator.git"
+    "url": "git+https://github.com/yannliepallotools/release-notes-generator.git"
   },
   "scripts": {
     "codecov": "codecov -f coverage/coverage-final.json",
@@ -99,5 +101,9 @@
     "rules": {
       "unicorn/string-content": "off"
     }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
   }
 }
