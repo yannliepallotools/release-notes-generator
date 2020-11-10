@@ -8,7 +8,8 @@
   },
   "contributors": [
     "Stephan Bönnemann <stephan@boennemann.me> (http://boennemann.me)",
-    "Gregor Martynus (https://twitter.com/gr2m)"
+    "Gregor Martynus (https://twitter.com/gr2m)",
+    "Yannick Liepold <yannick.liepold@allotools.com> (https://www.batitrade.com)"
   ],
   "dependencies": {
     "conventional-changelog-angular": "^5.0.0",
